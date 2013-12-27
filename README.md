@@ -8,7 +8,6 @@ Pour le tester:
 		<!DOCTYPE HTML>
 		<html>
 		<title>
-		MyP0ng
 		</title>
 		<script src="my_pong.js">
 		</script>
