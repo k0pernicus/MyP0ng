@@ -1,8 +1,8 @@
-MyP0ng
+<b>MyP0ng</b>
 
-But: Implémentation d'un Pong-like en JavaScript
+<b>But:</b> Implémentation d'un Pong-like en JavaScript
 
-Pour le tester:
+<b>Pour le tester:</b>
 	Créer un fichier .html contenant
 		
 		<!DOCTYPE HTML>
@@ -14,11 +14,13 @@ Pour le tester:
 		<body>
 		</body>
 		</html>
+		
+<b>ATTENTION!! Pour visualiser les points, utilisez une console Web afin d'afficher les scores, donnés par un console.log() pour l'instant -> instauration d'une nouvelle solution prochainement!</b>
 
-Ce qu'il reste à faire:
-	- Implanter les scores à l'écran
-	- Implanter les évènements "bonus" dans le jeu
-	- Implanter l'intéractivité avec le joueur (choix de la couleur de
-      fond, choix de jouer contre l'IA ou de jouer à 2, etc...)
+<b>Ce qu'il reste à faire:</b><ul>
+	<li>Implanter les scores à l'écran</li>
+	<li>Implanter les évènements "bonus" dans le jeu</li>
+	<li>Implanter l'intéractivité avec le joueur (choix de la couleur de
+      fond, choix de jouer contre l'IA ou de jouer à 2, etc...)</li></ul>
 
-MyP0ng, by WebTogz
+<b>MyP0ng</b>, by WebTogz
