@@ -3,7 +3,7 @@
 <b>But:</b> Implémentation d'un Pong-like en JavaScript
 
 <b>Pour le tester:</b>
-	Créer un fichier .html contenant
+	Créer un fichier .html contenant ...
 		
 		<!DOCTYPE HTML>
 		<html>
@@ -14,8 +14,10 @@
 		<body>
 		</body>
 		</html>
-		
-Le jeu se joue avec les touches <i>UP</i> et <i>DOWN</i>, qui vous permettra de bouger votre raquette (à droite).
+
+... et lancez le fichier avec votre navigateur web favori!
+
+Le jeu se joue avec les touches <i>UP</i> et <i>DOWN</i>, ce qui vous permettra de bouger votre raquette, se trouvant à droite de l'écran.
 
 <b>Ce qu'il peut être intéressant de faire:</b><ul>
 	<li>Incorporer de nouveaux "évènements bonus" (l'implantation
