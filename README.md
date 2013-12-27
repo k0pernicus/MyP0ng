@@ -15,7 +15,9 @@
 		</body>
 		</html>
 		
-<b>ATTENTION!! Pour visualiser les points, utilisez une console Web afin d'afficher les scores, donnés par un console.log() pour l'instant -> instauration d'une nouvelle solution prochainement!</b>
+Le jeu se joue avec les touches <i>UP</i> et <i>DOWN</i>, qui vous permettra de bouger votre raquette (à droite).
+		
+<b>ATTENTION!! Pour visualiser les points, utilisez une console Web afin d'afficher les scores, donnés par un console.log() pour l'instant :: instauration d'une nouvelle solution prochainement!</b>
 
 <b>Ce qu'il reste à faire:</b><ul>
 	<li><s>Implanter les scores à l'écran</s></li>
