@@ -1,5 +1,5 @@
 /*
-Animation -- reprise sur Internet (à étudier)
+Animation
 */
 var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {window.setTimeout(callback, 1000/60)};
 
@@ -16,11 +16,31 @@ canvas.height = height;
 var contenu = canvas.getContext('2d');
 
 /*
-On va charger par défaut la création du canvas
+Les variables déclarées pour jouer
 */
-window.onload = function() {
-	document.body.appendChild(canvas);
-	animate(step);
+var joueur = new Joueur();
+var ia = new IA();
+var balle = new Balle(xBalle,yBalle);
+
+/*Contiendra les variables contenant les codes touches attribuées pour jouer*/
+var keysDown = {};
+
+/*Le rendu graphique de l'application WEB*/
+var rendu = function() {
+	contenu.fillStyle = "#000000";
+	contenu.fillRect(0, 0, width, height);
+	joueur.rendu();
+	ia.rendu();
+	balle.rendu();
+};
+
+/*
+L'update concerne pour l'instant la balle, prenant en compte les raquettes Joueur + IA
+*/
+var update = function() {
+    joueur.update();
+    ia.update(balle);
+    balle.update(joueur.raquette, ia.raquette);
 };
 
 /*
@@ -30,15 +50,6 @@ var step = function() {
 	update();
 	rendu();
 	animate(step);
-};
-
-/*
-L'update concerne pour l'instant la balle, prenant en compte les raquettes Joueur + IA
-*/
-var update = function() {
-    joueur.update();
-    ia.update(balle);
-    balle.update(joueur.raquette, IA.raquette);
 };
 
 /*
@@ -58,8 +69,8 @@ function Raquette(x, y, width, height) {
     /*
       Fonction (ou méthode) permettant de modifier la largeur de l'objet
      */
-	this.setTaille = function(newWidth) {
-		this.width = newWidth;
+	this.setTaille = function(newHeight) {
+		this.height = newHeight;
 	}
 };
 
@@ -90,7 +101,7 @@ Raquette.prototype.move = function(x, y) {
 Objet Joueur - concerne un Joueur
 */
 function Joueur() {
-	this.raquette = new Raquette(765, 180, 15, 40);
+	this.raquette = new Raquette(width - 35, (height/2) - 20, 15, 40);
 	this.score = 0;
 };
 
@@ -113,7 +124,7 @@ Joueur.prototype.rendu = function() {
 On ajoute un update pour modifier la taille de la raquette du Joueur en fonction de son score
 */
 Joueur.prototype.update = function() {
-	if (this.score < (3 * ia.score)) {
+	if (this.score < (ia.score / 3) && ia.score >= 3) {
 		this.raquette.setTaille(60);
 	};
     for (var key in keysDown) {
@@ -208,12 +219,22 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
       On regarde si un point a été marqué -> axe des abcisses 
      */
     if (this.x < 0 || this.x > width) {
+	if (this.x < raquetteIA.x) {
+	    joueur.score += 1;
+	}
+	else {
+	    ia.score += 1;
+	    raquetteJ.x = width - 35;
+	    raquetteJ.y = (height/2) - 20;
+	    raquetteJ.width = 15;
+	    raquetteJ.height = 40;
+	}
+	console.log("Joueur = "+joueur.score);
+	console.log("IA = "+ia.score);
 	this.vit_x = 2;
 	this.vit_y = 0;
 	this.x = xBalle;
 	this.y = yBalle;
-	if (this.x < 0) joueur.score++;
-	else ia.score++;
     }
 
     /*
@@ -242,20 +263,15 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
 };
 
 /*
-Les variables déclarées pour jouer
+On va charger par défaut la création du canvas, et l'animation
 */
-var joueur = new Joueur();
-var ia = new IA();
-var balle = new Balle(xBalle,yBalle);
+window.onload = function() {
+    document.body.appendChild(canvas);
+    animate(step);
+};
 
-var keysDown = {};
+/*
+Evènements liés aux touches up & down du clavier
+*/
 window.addEventListener("keydown", function(event) { keysDown[event.keyCode] = true; });
 window.addEventListener("keyup", function(event) { delete keysDown[event.keyCode];});
-
-var rendu = function() {
-	contenu.fillStyle = "#000000";
-	contenu.fillRect(0, 0, width, height);
-	joueur.rendu();
-	ia.rendu();
-	balle.rendu();
-};
