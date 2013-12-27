@@ -27,15 +27,18 @@ var keysDown = {};
 
 /*Le rendu graphique de l'application WEB*/
 var rendu = function() {
-	contenu.fillStyle = "#000000";
-	contenu.fillRect(0, 0, width, height);
-	joueur.rendu();
-	ia.rendu();
-	balle.rendu();
+    contenu.fillStyle = "#000000";
+    contenu.fillRect(0, 0, width, height);
+    joueur.rendu();
+    ia.rendu();
+    balle.rendu();
+    contenu.font = "15pt Arial";
+    contenu.fillText("Score J2 = "+ia.score, 10, 20);
+    contenu.fillText("Score J1 = "+joueur.score, 675, 20);
 };
 
 /*
-L'update concerne pour l'instant la balle, prenant en compte les raquettes Joueur + IA
+L'update concerne le joueur, l'ia, ainsi que la balle
 */
 var update = function() {
     joueur.update();
@@ -82,6 +85,9 @@ Raquette.prototype.rendu = function() {
 	contenu.fillRect(this.x, this.y, this.width, this.height);
 };
 
+/*
+On ajoute la mouvance de la raquette, fonction prenant des coordonnées en paramètre
+*/
 Raquette.prototype.move = function(x, y) {
     this.x += x;
     this.y += y;
@@ -125,7 +131,7 @@ On ajoute un update pour modifier la taille de la raquette du Joueur en fonction
 */
 Joueur.prototype.update = function() {
 	if (this.score < (ia.score / 3) && ia.score >= 3) {
-		this.raquette.setTaille(60);
+		this.raquette.setTaille(70);
 	};
     for (var key in keysDown) {
 	var numKey = Number(key);

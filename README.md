@@ -18,8 +18,9 @@
 <b>ATTENTION!! Pour visualiser les points, utilisez une console Web afin d'afficher les scores, donnés par un console.log() pour l'instant -> instauration d'une nouvelle solution prochainement!</b>
 
 <b>Ce qu'il reste à faire:</b><ul>
-	<li>Implanter les scores à l'écran</li>
-	<li>Implanter les évènements "bonus" dans le jeu</li>
+	<li><s>Implanter les scores à l'écran</s></li>
+	<li>Implanter les évènements "bonus" dans le jeu (l'implantation
+	de l'allongement de la raquette si l'IA devance le Joueur est un exemple...)</li>
 	<li>Implanter l'intéractivité avec le joueur (choix de la couleur de
       fond, choix de jouer contre l'IA ou de jouer à 2, etc...)</li></ul>
 
