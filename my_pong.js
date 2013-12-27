@@ -235,8 +235,6 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
 	    raquetteJ.width = 15;
 	    raquetteJ.height = 40;
 	}
-	console.log("Joueur = "+joueur.score);
-	console.log("IA = "+ia.score);
 	this.vit_x = 2;
 	this.vit_y = 0;
 	this.x = xBalle;
