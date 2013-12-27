@@ -15,7 +15,7 @@
 		</body>
 		</html>
 		
-	Le jeu se joue avec les touches <i>UP</i> et <i>DOWN</i>, qui vous permettra de bouger votre raquette (à droite).
+Le jeu se joue avec les touches <i>UP</i> et <i>DOWN</i>, qui vous permettra de bouger votre raquette (à droite).
 		
 <b>ATTENTION!! Pour visualiser les points, utilisez une console Web afin d'afficher les scores, donnés par un console.log() pour l'instant :: instauration d'une nouvelle solution prochainement!</b>
 
