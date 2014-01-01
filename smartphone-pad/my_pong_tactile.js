@@ -232,6 +232,7 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
 	else {
 	    ia.score += 1;
 	}
+<<<<<<< HEAD:smartphone-pad/my_pong_tactile.js
 	raquetteJ.x = width - 35;
 	raquetteJ.y = (height/2) - 20;
 	raquetteJ.width = 15;
@@ -239,6 +240,8 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
 	raquetteJ.updown = 0;
 	raquetteJ.vit_x = 0;
 	raquetteJ.vit_y = 0;
+=======
+>>>>>>> fcb62cafd3dbb2b50234dd0e9d0be3080ecba69e:my_pong.js
 	this.vit_x = 2;
 	this.vit_y = 0;
 	this.x = xBalle;

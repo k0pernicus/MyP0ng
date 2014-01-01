@@ -2,7 +2,7 @@
 
 <b>But:</b> Implémentation d'un Pong-like en JavaScript
 
-2 versions du jeu sont disponibles: <ul>
+<b>2 versions du jeu sont disponibles:</b><ul>
 <li>une version "desktop" (jouable à partir des touches 'up' & 'down'
 du clavier - /desktop</li>
 <li>une version "tactile" (jouable à partir de deux boutons
@@ -23,7 +23,6 @@ vous permettra de bouger votre raquette (vous êtes à droite).
 	<li>Implanter les évènements "bonus" dans le jeu (l'implantation
 	de l'allongement de la raquette si l'IA devance le Joueur est un
 	exemple...) :: DONE</li>
-	<li>Implanter l'intéractivité avec le joueur (choix de la couleur de
-      fond, choix de jouer contre l'IA ou de jouer à 2, etc...)</li></ul>
+	<li>Implanter l'interaction avec le joueur (choix de la couleur de fond, choix de jouer contre l'IA ou de jouer à 2, etc...)</li></ul>
 
 <b>MyP0ng</b>, by WebTogz
