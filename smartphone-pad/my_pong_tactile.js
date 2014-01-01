@@ -6,13 +6,11 @@ var animate = window.requestAnimationFrame || window.webkitRequestAnimationFrame
 /*
 On crée un canvas, on initialise ses paramètres principaux (hauteur, largeur), et on récupère son contenu dans une variable context
 */
-var canvas = document.createElement('canvas');
-var width  = 800;
-var height = 400;
+var canvas = document.getElementById('canvas_pong');
+var width  = canvas.width;
+var height = canvas.height;
 var xBalle = width/2;
 var yBalle = height/2;
-canvas.width = width;
-canvas.height = height;
 var contenu = canvas.getContext('2d');
 
 /*
@@ -91,8 +89,8 @@ On ajoute la mouvance de la raquette, fonction prenant des coordonnées en param
 Raquette.prototype.move = function(x, y) {
     this.x += x;
     this.y += y;
-    this.vit_x = x;
-    this.vit_y = y;
+    this.vit_x = x/2;
+    this.vit_y = y/2;
     if (this.y < 0) {
 	this.y = 0;
 	this.vit_y = 0;
@@ -107,8 +105,9 @@ Raquette.prototype.move = function(x, y) {
 Objet Joueur - concerne un Joueur
 */
 function Joueur() {
-	this.raquette = new Raquette(width - 35, (height/2) - 20, 15, 40);
-	this.score = 0;
+    this.raquette = new Raquette(width - 35, (height/2) - 20, 15, 40);
+    this.score = 0;
+    this.updown = 0;
 };
 
 /*
@@ -130,21 +129,23 @@ Joueur.prototype.rendu = function() {
 On ajoute un update pour modifier la taille de la raquette du Joueur en fonction de son score
 */
 Joueur.prototype.update = function() {
-	if (this.score < (ia.score / 3) && ia.score >= 3) {
-		this.raquette.setTaille(70);
-	};
-    for (var key in keysDown) {
-	var numKey = Number(key);
-	if (numKey == 40) {
-	    this.raquette.move(0, 4);
-	}
-	else if (numKey == 38) {
-	    this.raquette.move(0, -4);
-	}
-	else {
-	    this.raquette.move(0, 0);
-	}
-     }
+    if (this.score < (ia.score / 3) && ia.score >= 3) {
+	this.raquette.setTaille(70);
+    };
+    if (this.updown !==0) {
+	this.raquette.move(0, this.updown * (joueur.raquette.height / 2));
+	this.updown = 0;
+    };
+};
+
+function up() {
+    joueur.updown = -1;
+    return;
+};
+
+function down() {
+    joueur.updown = 1;
+    return;
 };
 
 /*
@@ -203,8 +204,8 @@ Balle.prototype.rendu = function() {
 Ajout de l'update pour la date -> modification de la position de la balle en fonction de la vitesse de la balle dans l'axe des X et Y
 */
 Balle.prototype.update = function(raquetteJ, raquetteIA) {
-	this.x += this.vit_x;
-	this.y += this.vit_y;
+	this.x += this.vit_x/1.5;
+	this.y += this.vit_y/1.5;
 
     /*
       Si la balle tape contre le mur de bas, dans ce cas on repositionne la balle à 5 et on inverse la vitesse de la balle (sens des y)
@@ -230,13 +231,14 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
 	}
 	else {
 	    ia.score += 1;
-	    raquetteJ.x = width - 35;
-	    raquetteJ.y = (height/2) - 20;
-	    raquetteJ.width = 15;
-	    raquetteJ.height = 40;
 	}
-	console.log("Joueur = "+joueur.score);
-	console.log("IA = "+ia.score);
+	raquetteJ.x = width - 35;
+	raquetteJ.y = (height/2) - 20;
+	raquetteJ.width = 15;
+	raquetteJ.height = 40;
+	raquetteJ.updown = 0;
+	raquetteJ.vit_x = 0;
+	raquetteJ.vit_y = 0;
 	this.vit_x = 2;
 	this.vit_y = 0;
 	this.x = xBalle;
@@ -251,7 +253,7 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
      */
     if (this.x > xBalle) {
 	if ((this.y - 5) < (raquetteJ.y + raquetteJ.height) && (this.y + 5) > (raquetteJ.y) && (this.x - 5) < (raquetteJ.x + raquetteJ.width) && (this.x + 5) > (raquetteJ.x)) {
-	    this.vit_y += raquetteJ.vit_y;
+	    this.vit_y += raquetteJ.vit_y / 2;
 	    this.vit_x = -2;
 	    this.x += this.vit_x;
 	}
@@ -272,12 +274,5 @@ Balle.prototype.update = function(raquetteJ, raquetteIA) {
 On va charger par défaut la création du canvas, et l'animation
 */
 window.onload = function() {
-    document.body.appendChild(canvas);
     animate(step);
 };
-
-/*
-Evènements liés aux touches up & down du clavier
-*/
-window.addEventListener("keydown", function(event) { keysDown[event.keyCode] = true; });
-window.addEventListener("keyup", function(event) { delete keysDown[event.keyCode];});

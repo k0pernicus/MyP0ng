@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>
+My Pong - by WebTogz
+</title>
+<style type="text/css">
+button {
+width: 85px;
+height: 85px;
+background: #fafafa;
+box-shadow: 1px 1px 4px #aaa;
+font: 10px Arial;
+border-radius: 50%;
+color:#000000;
+}
+button:focus {
+background:#000000;
+box-shadow: 1px 1px 4px #fff;
+color:#fafafa;
+}
+#up {
+margin-left: 226px;
+margin-right: 95px;
+}
+#down {
+margin-left: 95px;
+margin-right: 266px;
+}
+</style>
+</head>
+<body>
+<canvas id="canvas_pong" width="800px" height="400px">
+</canvas>
+</br></br>
+<button id="up" type="button" onclick="up()">UP</button><button
+id="down" type="button" onclick="down()">DOWN</button>
+<script src="my_pong_tactile.js">
+</script>
+</body>
+</html>
+
